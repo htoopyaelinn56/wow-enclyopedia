@@ -18,7 +18,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 const HomeScreen: React.FC = () => {
   return (
     <>
-      <AppBar />
+      <AppBar title='WoW Enclyopedia' />
       <CategoryGrid />
     </>
   );

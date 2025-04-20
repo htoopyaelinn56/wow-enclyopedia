@@ -1,5 +1,7 @@
 import { FlatList, TouchableOpacity, Text, StyleSheet, Dimensions } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
+import { RootStackParamList } from '../../../App';
 import { COLORS } from '../../constants/colors';
 
 interface Category {
@@ -21,9 +23,13 @@ const NUM_COLUMNS = 2;
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 export const CategoryGrid: React.FC = () => {
+    const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+
     const handleCategoryPress = (category: Category) => {
-        console.log(`Navigating to ${category.name}...`);
-        // Add navigation logic here
+        navigation.navigate('Category', {
+            categoryId: category.id,
+            categoryName: category.name
+        });
     };
 
     const renderGridItem = ({ item }: { item: Category }) => (

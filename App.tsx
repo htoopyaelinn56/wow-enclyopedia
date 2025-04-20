@@ -1,11 +1,30 @@
 import { useEffect } from 'react';
-import { SafeAreaView, StatusBar, StyleSheet } from 'react-native';
+import { StatusBar, StyleSheet, SafeAreaView } from 'react-native';
 import * as NavigationBar from 'expo-navigation-bar';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { AppBar } from './src/components/AppBar/AppBar';
 import { CategoryGrid } from './src/components/CategoryGrid/CategoryGrid';
+import { CategoryScreen } from './src/screens/CategoryScreen';
 import { COLORS } from './src/constants/colors';
 
-const WoWEncyclopediaScreen: React.FC = () => {
+export type RootStackParamList = {
+  Home: undefined;
+  Category: { categoryId: string; categoryName: string };
+};
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
+
+const HomeScreen: React.FC = () => {
+  return (
+    <>
+      <AppBar />
+      <CategoryGrid />
+    </>
+  );
+};
+
+const App: React.FC = () => {
   const setNavigationBarColor = async () => {
     try {
       await NavigationBar.setBackgroundColorAsync(COLORS.primaryDark);
@@ -19,19 +38,22 @@ const WoWEncyclopediaScreen: React.FC = () => {
   }, []);
 
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <NavigationContainer>
       <StatusBar backgroundColor={COLORS.primaryDark} />
-      <AppBar />
-      <CategoryGrid />
-    </SafeAreaView>
+      <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.primaryDark }}>
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false,
+            contentStyle: { backgroundColor: COLORS.primaryDark }
+          }}
+        >
+          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="Category" component={CategoryScreen} />
+        </Stack.Navigator>
+      </SafeAreaView>
+    </NavigationContainer>
   );
 };
 
-const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: COLORS.primaryDark,
-  },
-});
 
-export default WoWEncyclopediaScreen;
+export default App;

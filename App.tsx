@@ -1,28 +1,18 @@
 import { useEffect } from 'react';
-import { StatusBar, StyleSheet, SafeAreaView } from 'react-native';
+import { StatusBar, SafeAreaView } from 'react-native';
 import * as NavigationBar from 'expo-navigation-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { AppBar } from './src/components/AppBar/AppBar';
-import { CategoryGrid } from './src/components/CategoryGrid/CategoryGrid';
 import { CategoryScreen } from './src/screens/CategoryScreen';
+import { HomeScreen } from './src/screens/HomeScreen';
 import { COLORS } from './src/constants/colors';
 
 export type RootStackParamList = {
-  Home: undefined;
-  Category: { categoryId: string; categoryName: string };
+  HomeScreen: undefined;
+  CategoryScreen: { categoryId: string; categoryName: string };
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
-
-const HomeScreen: React.FC = () => {
-  return (
-    <>
-      <AppBar title='WoW Enclyopedia' />
-      <CategoryGrid />
-    </>
-  );
-};
 
 const App: React.FC = () => {
   const setNavigationBarColor = async () => {
@@ -50,8 +40,8 @@ const App: React.FC = () => {
             presentation: 'card'
           }}
         >
-          <Stack.Screen name="Home" component={HomeScreen} />
-          <Stack.Screen name="Category" component={CategoryScreen} />
+          <Stack.Screen name="HomeScreen" component={HomeScreen} />
+          <Stack.Screen name="CategoryScreen" component={CategoryScreen} />
         </Stack.Navigator>
       </SafeAreaView>
     </NavigationContainer>

@@ -12,8 +12,6 @@ interface Category {
 
 const CATEGORIES: Category[] = [
     { id: 'items', name: 'Items', iconName: 'treasure-chest' },
-    { id: 'weapons', name: 'Weapons', iconName: 'sword-cross' },
-    { id: 'recipes', name: 'Recipes', iconName: 'notebook-edit-outline' },
     { id: 'quests', name: 'Quests', iconName: 'map-marker-question-outline' },
     { id: 'mounts', name: 'Mounts', iconName: 'horse-variant' },
     { id: 'zones', name: 'Zones', iconName: 'map-legend' },
@@ -26,7 +24,7 @@ export const CategoryGrid: React.FC = () => {
     const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
     const handleCategoryPress = (category: Category) => {
-        navigation.navigate('Category', {
+        navigation.navigate('CategoryScreen', {
             categoryId: category.id,
             categoryName: category.name
         });

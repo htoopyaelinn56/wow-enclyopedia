@@ -5,7 +5,7 @@ import { RootStackParamList } from '../../App';
 import { useState } from 'react';
 import { AppBar } from '../components/AppBar/AppBar';
 
-type Props = NativeStackScreenProps<RootStackParamList, 'Category'>;
+type Props = NativeStackScreenProps<RootStackParamList, 'CategoryScreen'>;
 
 interface ListItem {
     id: string;

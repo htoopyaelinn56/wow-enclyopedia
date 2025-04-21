@@ -44,7 +44,10 @@ const App: React.FC = () => {
         <Stack.Navigator
           screenOptions={{
             headerShown: false,
-            contentStyle: { backgroundColor: COLORS.primaryDark }
+            contentStyle: { backgroundColor: COLORS.primaryDark },
+            animation: 'fade',
+            animationDuration: 30,
+            presentation: 'card'
           }}
         >
           <Stack.Screen name="Home" component={HomeScreen} />

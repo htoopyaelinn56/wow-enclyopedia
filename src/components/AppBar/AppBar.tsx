@@ -19,6 +19,7 @@ export const AppBar: React.FC<AppBarProps> = ({ title, showBackButton = false })
                         style={styles.backButton}
                         onPress={() => navigation.goBack()}
                         activeOpacity={1}
+                        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
                     >
                         <Icon name="arrow-left" size={24} color={COLORS.textPrimary} />
                     </TouchableOpacity>
@@ -49,6 +50,7 @@ const styles = StyleSheet.create({
     },
     backButton: {
         marginRight: 16,
+        padding: 8,
     },
     appBarTitle: {
         fontSize: 20,
